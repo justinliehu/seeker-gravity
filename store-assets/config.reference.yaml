@@ -1,0 +1,92 @@
+# Seeker Gravity - values for the Solana dApp Store Publisher Portal (https://publish.solanamobile.com)
+# Same layout as heli/store-assets/config.reference.yaml. Asset paths are relative to rota/store-assets/.
+
+publisher:
+  name: justinliehu
+  website: https://seeker-heli-seeker-doudizhu-126cd50d.koyeb.app/   # PUBLISHER site = the hub listing all games (reviewer rejected a single-app page)
+  app_website: https://seeker-heli-seeker-doudizhu-126cd50d.koyeb.app/gravity/
+  email: justinliehu@gmail.com
+
+app:
+  name: Seeker Gravity                                # 14 chars (limit 25)
+  android_package: com.justinliehu.seekergravity
+  subtitle: Bend gravity. Push blocks. Find 50 gems.  # 43 chars (limit 50)
+  media:
+    - purpose: icon
+      uri: ./icon-512.png
+    - purpose: banner
+      uri: ./banner-1200x600.png
+    - purpose: featureGraphic
+      uri: ./feature-1200x1200.png
+    - purpose: screenshot
+      uri: ./screenshots-1920x1080/world1.png
+    - purpose: screenshot
+      uri: ./screenshots-1920x1080/world3.png
+    - purpose: screenshot
+      uri: ./screenshots-1920x1080/world3a.png
+    - purpose: screenshot
+      uri: ./screenshots-1920x1080/title.png
+
+catalog:
+  en-US:
+    description: |
+      Seeker Gravity is a cheerful block-pushing puzzle platformer where gravity bends beneath
+      your feet. Walk off an edge and the world turns with you; carry blocks, flip them into
+      place, open the way forward, and hunt down all 50 gems across 8 vibrant worlds. Every
+      level is hand-made, every world has its own colour, and a timer waits for anyone who wants
+      to speedrun it.
+
+      Free to play, no ads, no accounts, no analytics. One optional in-app purchase: after the three
+      free revives per level per day, a revive in place costs 100 SKR (paid with your Seeker wallet).
+      The only permissions are INTERNET and ACCESS_NETWORK_STATE, used solely for that payment.
+
+      Seeker Gravity is a port of the MIT-licensed ROTA: Bend Gravity by Harmony Monroe, with
+      touch controls and Seeker branding. The original licence and full credits ship with the app.
+    headline: Bend gravity, carry blocks, collect every gem.   # 46 chars (limit 50)
+    whats_new: |
+      • Paid revive: once the 3 free revives for a level are used up today, you can revive in place
+        for 100 SKR, approved in one tap in your Seeker wallet without leaving the game. Restarting a level is always free.
+      • Revive in place: continue from the last spot you stood on; blocks and the timer stay as they are.
+      • 8 worlds, 50 gems, on-screen touch controls, gamepad supported.
+      • No ads, no accounts, no tracking. INTERNET / ACCESS_NETWORK_STATE are used only for that payment.
+      • Based on ROTA: Bend Gravity by Harmony Monroe (MIT) - thank you, Harmony!
+  zh-TW:
+    description: |
+      《Seeker Gravity》是一款可以「彎曲重力」的方塊解謎平台遊戲:走出邊緣,整個世界跟著你轉;
+      搬起方塊、翻到正確位置、打開前路,在 8 個色彩鮮明的世界裡找齊全部 50 顆寶石。每一關都是
+      手工設計,想競速的人還有計時挑戰。
+
+      免費遊玩、無廣告、無帳號、無數據追蹤。唯一的內購:每關每天 3 次免費原地復活用完後,可付 100 SKR
+      (Seeker 錢包一鍵付款,不離開遊戲)再復活一次;權限只有 INTERNET 與 ACCESS_NETWORK_STATE,只用於這筆付款。
+
+      本作改作自 Harmony Monroe 的 MIT 授權作品 ROTA: Bend Gravity,加入觸控操作與 Seeker 品牌;
+      原始授權與完整致謝隨應用一同發布。
+
+testing_instructions: |
+  HOW TO TEST:
+  1. Launch the app. Tap START on the title screen (or the X on-screen button). Everything below
+     works offline except the optional paid revive.
+  2. Play with the on-screen controls: left/right to walk, boot = jump, hand = grab / drop a block,
+     magnifier = zoom out. Walk off any edge: gravity rotates and you keep walking on the new floor.
+  3. FREE REVIVE (no wallet needed): die (spikes or falling) - a prompt offers REVIVE HERE (3 left today)
+     and RESTART LEVEL. REVIVE HERE puts you back on the last spot you stood on; each level allows 3 free
+     revives per calendar day. RESTART LEVEL is always free.
+  4. PAID REVIVE (needs the Seeker wallet with at least 100 SKR and a little SOL for the network fee):
+     after the 3 free revives of a level are used, the prompt shows PAY 100 SKR TO REVIVE. Tapping it
+     shows a confirmation (PAY 100 SKR / CANCEL); PAY opens the Seeker wallet sheet inside the app
+     (Mobile Wallet Adapter). Approve the 100 SKR transfer; when it is confirmed on-chain the game
+     revives you in place automatically. Declining in the wallet, or CANCEL, returns to the prompt
+     with no charge. The price is shown before every payment.
+  5. Options (pause menu): sound, touch-control size/margins, performance and speedrun clock.
+
+  NOTES FOR REVIEW:
+  - Single-player puzzle game. One optional in-app purchase: a revive in place for 100 SKR (SPL token
+    SKRbvo6Gf7GondiT3BbTfuRDPqLWei4j2Qy2NPGZhW3), paid from the player's own wallet to the publisher's
+    wallet G49cN5KNnVfakMBFa7RLbHq1TZv1T86kR1Sp2bGKtoGG. No accounts, no ads, no analytics, no other
+    currency. Blockchain payments are final; the terms page says so.
+  - Permissions: INTERNET and ACCESS_NETWORK_STATE only (verify with: aapt dump permissions <apk>).
+    They are used solely to fetch the payment transaction from https://seeker-heli-seeker-doudizhu-126cd50d.koyeb.app
+    and to confirm it; nothing else leaves the device. Progress is stored locally.
+  - Privacy: https://seeker-heli-seeker-doudizhu-126cd50d.koyeb.app/gravity/legal/privacy
+    Terms:   https://seeker-heli-seeker-doudizhu-126cd50d.koyeb.app/gravity/legal/terms
+    Licence: https://seeker-heli-seeker-doudizhu-126cd50d.koyeb.app/gravity/legal/license (MIT, ROTA by Harmony Monroe)
