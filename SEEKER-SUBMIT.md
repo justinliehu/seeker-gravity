@@ -14,7 +14,7 @@
 | 付費復活 100 SKR(App 內 Seeker 錢包一鍵,付款確認即復活) | ✅ 真機 5 筆真付款驗證;後端 Koyeb 零私鑰 |
 | 手機版選項選單(藏鍵盤/手把/視窗項目) | ✅ |
 | 建置方式 | gradle custom build(`android/build` 模板 + `android/plugins/SeekerWallet.aar`),JDK 17 |
-| 正式包 | ✅ `build/android/seeker-gravity-release.apk` 1.4.3(versionCode 17),release 簽名,73.8 MB,arm64-v8a,minSdk 23 / target 34 |
+| 正式包 | ✅ `build/android/seeker-gravity-release.apk` **1.4.4(versionCode 18)**(2026-09-08 為重新送審升版;遊戲內容與 1.4.3 相同),release 簽名,73.8 MB,arm64-v8a,minSdk 23 / target 34 |
 | 權限 | INTERNET、ACCESS_NETWORK_STATE(只用於付款;Portal 要如實填) |
 | 商店素材 | ✅ `store-assets/`:icon-512、banner 1200×600、feature 1200×1200、截圖 |
 | 上架文案 + 審核說明 | ✅ `store-assets/config.reference.yaml`(已含內購與權限說明) |
@@ -68,6 +68,14 @@ powershell -ExecutionPolicy Bypass -File C:\Users\justi\Desktop\games\rota\tools
 - **PowerShell 5.1 寫 UTF-8 會帶 BOM** → Godot 3 讀 `editor_settings-3.tres` / `export_presets.cfg` 報 `Parse Error: Expected '['`、`presets detected: (none)`。腳本改用 `UTF8Encoding($false)` 寫檔,並每次重寫一份最小的 editor settings(舊檔備份成 `.bak`)。
 - **`&` 不會等 Godot 跑完**(Godot 的 Windows 版是視窗程式,20 ms 就回來)→ 腳本以為沒出 APK、把 preset 還原,背景的 Godot 讀到空的 release keystore → `Code-Signieren: Keystore konnte nicht gefunden werden`。腳本改用 `Start-Process -Wait`。
 - **gradle 的搬檔步驟會被判 UP-TO-DATE 跳過**:重編出來的 APK 位元組完全相同、輸出資料夾又沒變時,`copyAndRenameReleaseApk` 直接略過(檔名不算它的輸入),Godot 仍印 `Successfully completed` 但沒檔案。腳本改成每次匯出到新的 `build/android/export-<時間>/` 再搬到正式檔名。Godot 匯出失敗時 exit code 也是 0,只有檢查 APK 檔案存在才可信。
+
+## 3.5 重新送審(2026-09-08)
+
+被拒原因是發行者網站,不是 App。Portal 要新的 release,所以版本升到 **1.4.4 / versionCode 18**:
+
+1. 客服把 publisher Website 改成 https://seeker-heli-seeker-doudizhu-126cd50d.koyeb.app/(總頁,列 Olympian Intrigue + Seeker Gravity)。
+2. 跑 `build-release.ps1`(輸入金鑰密碼)→ 產出 1.4.4 的正式包。
+3. Portal「Upload Seeker Gravity release」上傳該 APK,What's New 用 `store-assets/portal-copy.txt` 裡的版本,再 Submit。
 
 ## 4. Portal 表單(直接複製)
 
