@@ -76,6 +76,13 @@ var air_clock := 0.0
 
 var is_dead := false
 var dead_clock := 0.0
+# revive-in-place: last spot the player stood on, and post-revive invulnerability
+var safe_pos := Vector2.ZERO
+var safe_dir := 0
+var has_safe := false
+var revive_grace := 0.0
+var is_revive_prompt := false
+var stand_clock := 0.0
 var dead_time := 0.7
 
 var turn_ease := EaseMover.new(0.2)
@@ -262,6 +269,16 @@ func _physics_process(delta):
 	
 	if is_dead or (spr_easy.is_less or !spr_easy.show):
 		return
+	
+	# revive-in-place: remember the last spot we stood on for at least 0.2s (is_floor comes from move())
+	if is_floor and !is_npc:
+		stand_clock += delta
+		if stand_clock >= 0.2:
+			safe_pos = global_position
+			safe_dir = dir
+			has_safe = true
+	else:
+		stand_clock = 0.0
 	
 	# input
 	release_clock = max(release_clock - delta, 0)
@@ -520,6 +537,11 @@ func physics_frame():
 	difference = last_pos - target_pos
 
 func _process(delta):
+	if revive_grace > 0.0:
+		revive_grace = max(0.0, revive_grace - delta)
+		sprites.modulate.a = 0.4 if int(revive_grace * 10.0) % 2 == 0 else 1.0
+		if revive_grace == 0.0:
+			sprites.modulate.a = 1.0
 	if Engine.editor_hint: return
 	
 	# squash squish and stretch
@@ -540,6 +562,7 @@ func _process(delta):
 	
 	# death animation
 	if is_dead:
+		if is_revive_prompt: return
 		sprites.position += rot(velocity) * delta
 		sprites.rotate(deg2rad(240) * -dir_x * delta)
 		velocity.y += fall_gravity * delta
@@ -547,8 +570,7 @@ func _process(delta):
 		if dead_clock < dead_time:
 			dead_clock += delta
 			if dead_clock >= dead_time:
-				Cutscene.is_playing = false
-				Shared.reset()
+				_death_complete()
 		
 		return
 	
@@ -782,6 +804,7 @@ func _on_BodyArea_body_entered(body):
 
 func die():
 	if is_dead: return
+	if revive_grace > 0.0: return
 	if is_npc:
 		scene()
 		return
@@ -926,3 +949,45 @@ func arrow_open():
 	Shared.chat.open(lines[line], arrow, Transform2D(dir * PI * 0.5, global_position + rot(chat_offset)))
 	greeting_clock = rand_range(greeting_wait.x, greeting_wait.y)
 
+func _death_complete():
+	Cutscene.is_playing = false
+	var prompt = get_node_or_null("/root/RevivePrompt")
+	var revive = get_node_or_null("/root/Revive")
+	if prompt != null and revive != null and has_safe and revive.can_offer(Shared.map_name):
+		is_revive_prompt = true
+		Cutscene.is_playing = true
+		if !prompt.is_connected("revive_chosen", self, "revive_here"):
+			prompt.connect("revive_chosen", self, "revive_here", [], CONNECT_ONESHOT)
+		if !prompt.is_connected("restart_chosen", self, "restart_level"):
+			prompt.connect("restart_chosen", self, "restart_level", [], CONNECT_ONESHOT)
+		prompt.open(Shared.map_name)
+	else:
+		Shared.reset()
+
+func restart_level():
+	is_revive_prompt = false
+	Cutscene.is_playing = false
+	Shared.reset()
+
+func revive_here():
+	var revive = get_node_or_null("/root/Revive")
+	if revive != null:
+		revive.consume(Shared.map_name)
+	is_revive_prompt = false
+	is_dead = false
+	dead_clock = 0.0
+	Cutscene.is_playing = false
+	revive_grace = 1.5
+	global_position = safe_pos
+	self.dir = safe_dir
+	velocity = Vector2.ZERO
+	joy = Vector2.ZERO
+	sprites.position = Vector2.ZERO
+	sprites.rotation = turn_to
+	turn_ease.clock = turn_ease.time
+	sprites.modulate.a = 1.0
+	is_floor = false
+	is_jump = true
+	has_jumped = true
+	anim.play("jump")
+	Shared.save_data()

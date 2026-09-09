@@ -1,0 +1,163 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://media/font/profile/PauseItem.tres" type="DynamicFont" id=1]
+[ext_resource path="res://src/menu/RevivePrompt.gd" type="Script" id=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.08, 0.05, 0.16, 0.94 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 1, 1, 1, 0.9 )
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+content_margin_left = 36.0
+content_margin_right = 36.0
+content_margin_top = 28.0
+content_margin_bottom = 28.0
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 1, 0.84, 0.27, 1 )
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+content_margin_left = 26.0
+content_margin_right = 26.0
+content_margin_top = 12.0
+content_margin_bottom = 12.0
+
+[node name="RevivePrompt" type="CanvasLayer"]
+pause_mode = 2
+layer = 7
+script = ExtResource( 2 )
+
+[node name="Dim" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0, 0, 0, 0.45 )
+
+[node name="Center" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="Panel" type="PanelContainer" parent="Center"]
+margin_left = 300.0
+margin_top = 200.0
+margin_right = 980.0
+margin_bottom = 520.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="VBox" type="VBoxContainer" parent="Center/Panel"]
+margin_left = 36.0
+margin_top = 28.0
+margin_right = 644.0
+margin_bottom = 292.0
+custom_constants/separation = 18
+
+[node name="Title" type="Label" parent="Center/Panel/VBox"]
+margin_right = 608.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 1 )
+text = "OUCH"
+align = 1
+
+[node name="Info" type="Label" parent="Center/Panel/VBox"]
+margin_top = 58.0
+margin_right = 608.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 600, 0 )
+custom_colors/font_color = Color( 0.85, 0.88, 1, 1 )
+text = "Continue from where you stood. Blocks and the timer stay as they are."
+align = 1
+autowrap = true
+
+[node name="Buttons" type="HBoxContainer" parent="Center/Panel/VBox"]
+margin_top = 118.0
+margin_right = 608.0
+margin_bottom = 180.0
+custom_constants/separation = 20
+alignment = 1
+
+[node name="RestartButton" type="Button" parent="Center/Panel/VBox/Buttons"]
+margin_right = 200.0
+margin_bottom = 62.0
+rect_min_size = Vector2( 200, 62 )
+custom_fonts/font = ExtResource( 1 )
+text = "RESTART LEVEL"
+
+[node name="ReviveButton" type="Button" parent="Center/Panel/VBox/Buttons"]
+margin_left = 220.0
+margin_right = 608.0
+margin_bottom = 62.0
+rect_min_size = Vector2( 380, 62 )
+custom_styles/normal = SubResource( 2 )
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/focus = SubResource( 2 )
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.15, 0.08, 0, 1 )
+text = "REVIVE HERE  (3 left today)"
+
+[node name="BuyButton" type="Button" parent="Center/Panel/VBox/Buttons"]
+visible = false
+margin_left = 220.0
+margin_right = 608.0
+margin_bottom = 62.0
+rect_min_size = Vector2( 380, 62 )
+custom_styles/normal = SubResource( 2 )
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/focus = SubResource( 2 )
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.15, 0.08, 0, 1 )
+text = "PAY 100 SKR TO REVIVE"
+
+[node name="Waiting" type="VBoxContainer" parent="Center/Panel/VBox"]
+visible = false
+margin_top = 198.0
+margin_right = 608.0
+margin_bottom = 300.0
+custom_constants/separation = 14
+alignment = 1
+
+[node name="WaitLabel" type="Label" parent="Center/Panel/VBox/Waiting"]
+margin_right = 608.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 600, 0 )
+custom_colors/font_color = Color( 1, 0.84, 0.27, 1 )
+text = "Finish the payment in your wallet, then come back here."
+align = 1
+autowrap = true
+
+[node name="WaitButtons" type="HBoxContainer" parent="Center/Panel/VBox/Waiting"]
+margin_top = 54.0
+margin_right = 608.0
+margin_bottom = 116.0
+custom_constants/separation = 20
+alignment = 1
+
+[node name="CancelButton" type="Button" parent="Center/Panel/VBox/Waiting/WaitButtons"]
+margin_right = 200.0
+margin_bottom = 62.0
+rect_min_size = Vector2( 200, 62 )
+custom_fonts/font = ExtResource( 1 )
+text = "CANCEL"
+
+[node name="PayButton" type="Button" parent="Center/Panel/VBox/Waiting/WaitButtons"]
+margin_left = 220.0
+margin_right = 560.0
+margin_bottom = 62.0
+rect_min_size = Vector2( 340, 62 )
+custom_styles/normal = SubResource( 2 )
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/focus = SubResource( 2 )
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.15, 0.08, 0, 1 )
+text = "PAY 100 SKR"

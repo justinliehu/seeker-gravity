@@ -1,9 +1,0 @@
-[Desktop Entry]
-Name=ROTA
-GenericName=Puzzle Game
-Comment=Gravity bends beneath your feet
-Exec=godot-runner
-Icon=net.hhoney.rota
-Terminal=false
-Type=Application
-Categories=Game;KidsGame;

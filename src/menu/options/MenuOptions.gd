@@ -1,5 +1,8 @@
 extends MenuBase
 
+# rows that only make sense with a keyboard / desktop window; hidden on the phone build
+const MOBILE_HIDDEN := ["Keyboard", "Controller", "Fullscreen", "Borderless", "Resolution", "Mouse", "Vsync"]
+
 func fill_items():
 	if is_instance_valid(items_node):
 		for i in items_node.get_children():
@@ -12,11 +15,17 @@ func fill_items():
 				i.visible = Shared.light_enabled > 0
 			if i.is_in_group("shadow") and i.visible:
 				i.visible = Shared.shadow_enabled > 0
+			if i.name in MOBILE_HIDDEN:
+				if Shared.is_mobile:
+					i.visible = false
+				elif not i.is_in_group("window"):
+					i.visible = true  # window-group rows are decided by the fullscreen rule above
 	
 	.fill_items()
 
 func row():
-	is_audio_joy = cursor == 2 or cursor > 5
+	# tick sound for rows that react to left/right (index-independent, rows may be hidden)
+	is_audio_joy = cursor < items.size() and items[cursor].has_method("axis_x")
 
 func close():
 	Shared.save_options()

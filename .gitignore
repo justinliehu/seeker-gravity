@@ -7,3 +7,13 @@
 [Aa]ndroid/
 [Ee]xport/*/
 [Ee]xport/_mac*
+# Seeker Gravity build outputs / secrets
+build/
+keys/
+*.apk
+*.idsig
+web/static/game.apk
+web/__pycache__/
+# backend order store / python caches / machine-specific SDK path
+server/data/
+tools/seekerwallet-plugin/local.properties

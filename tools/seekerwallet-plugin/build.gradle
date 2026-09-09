@@ -1,0 +1,35 @@
+// SeekerWallet - Godot 3.6 Android plugin (in-app Mobile Wallet Adapter payment).
+// Build:  gradlew.bat assembleRelease   ->  build/outputs/aar/SeekerWallet.aar
+// then copy the AAR next to android/plugins/SeekerWallet.gdap (see ../brand/build-plugin.ps1).
+plugins {
+    id 'com.android.library' version '8.2.0'
+}
+
+android {
+    namespace 'org.godotengine.plugin.seekerwallet'
+    compileSdk 34
+
+    defaultConfig {
+        minSdk 23          // mobile-wallet-adapter-clientlib needs 23; the export preset sets the same
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    libraryVariants.all { variant ->
+        variant.outputs.all { output ->
+            outputFileName = "SeekerWallet.aar"
+        }
+    }
+}
+
+dependencies {
+    // Godot's own classes are provided by the app at runtime (godot-lib.release.aar of the build template).
+    compileOnly files('libs/godot-lib-release-classes.jar')
+    compileOnly 'androidx.annotation:annotation:1.7.1'
+    // Provided at runtime through the [dependencies] remote list in SeekerWallet.gdap.
+    compileOnly 'com.solanamobile:mobile-wallet-adapter-clientlib:2.0.3'
+}

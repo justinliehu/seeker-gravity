@@ -1,0 +1,6 @@
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+# Solana libs for the Seeker Gravity revive checkout (pay.py). PIN these: 0.37.1 + 0.27.1 is the combo
+# verified in seeker-mines; a floating solana>=0.30 once pulled a release without solana.rpc.api.
+solders==0.27.1
+solana==0.37.1

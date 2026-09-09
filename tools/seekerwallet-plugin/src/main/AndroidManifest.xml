@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Android 11+ package visibility: lets the plugin see wallets that handle solana-wallet: links. -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="solana-wallet" />
+        </intent>
+    </queries>
+
+    <!-- MWA local association is a cleartext websocket to ws://127.0.0.1:<port> (the wallet is the
+         server). targetSdk >= 28 blocks cleartext by default, which makes the connection silently
+         never open and the game sit on "waiting for payment" - so allow it explicitly. -->
+    <application android:usesCleartextTraffic="true">
+        <!-- Godot 3.x plugin registry: org.godotengine.plugin.v1.<PluginName> -> plugin class -->
+        <meta-data
+            android:name="org.godotengine.plugin.v1.SeekerWallet"
+            android:value="org.godotengine.plugin.seekerwallet.SeekerWallet" />
+    </application>
+</manifest>
