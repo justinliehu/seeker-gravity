@@ -14,7 +14,7 @@
 | 付費復活 100 SKR(App 內 Seeker 錢包一鍵,付款確認即復活) | ✅ 真機 5 筆真付款驗證;後端 Koyeb 零私鑰 |
 | 手機版選項選單(藏鍵盤/手把/視窗項目) | ✅ |
 | 建置方式 | gradle custom build(`android/build` 模板 + `android/plugins/SeekerWallet.aar`),JDK 17 |
-| 正式包 | ✅ `build/android/seeker-gravity-release.apk` **1.4.4(versionCode 18)**(2026-09-08 為重新送審升版;遊戲內容與 1.4.3 相同),release 簽名,73.8 MB,arm64-v8a,minSdk 23 / target 34 |
+| 正式包 | **1.4.5(versionCode 19)**,2026-09-09 加入遊戲內說明後升版(要重跑 build-release.ps1),release 簽名,73.8 MB,arm64-v8a,minSdk 23 / target 34 |
 | 權限 | INTERNET、ACCESS_NETWORK_STATE(只用於付款;Portal 要如實填) |
 | 商店素材 | ✅ `store-assets/`:icon-512、banner 1200×600、feature 1200×1200、截圖 |
 | 上架文案 + 審核說明 | ✅ `store-assets/config.reference.yaml`(已含內購與權限說明) |
@@ -76,6 +76,15 @@ powershell -ExecutionPolicy Bypass -File C:\Users\justi\Desktop\games\rota\tools
 1. 客服把 publisher Website 改成 https://seeker-heli-seeker-doudizhu-126cd50d.koyeb.app/(總頁,列 Olympian Intrigue + Seeker Gravity)。
 2. 跑 `build-release.ps1`(輸入金鑰密碼)→ 產出 1.4.4 的正式包。
 3. Portal「Upload Seeker Gravity release」上傳該 APK,What's New 用 `store-assets/portal-copy.txt` 裡的版本,再 Submit。
+
+## 3.6 加入遊戲內說明(1.4.5,2026-09-09)
+
+評論說 no in game tutorial or explanation。保留「自己摸索」的設計,只加兩樣不打擾的東西(`tools/brand/patch_howto.py`):
+
+1. **HOW TO PLAY 頁**(`src/menu/MenuHowTo.tscn`):四個操作按鈕圖示 + 三行規則,標題選單和暫停選單都進得去,按 Back 或確認就關。玩家不點就看不到。
+2. **第一關的一行提示**(`src/autoload/Tip.tscn`):新遊戲第一次站進第一關時,畫面上方淡入「Walk off an edge: gravity turns with you」,五秒後自己淡出,**一輩子只出現一次**(旗標存在 `user://tips.json`,刪存檔會重新教)。不用點、不擋操作。
+
+測試:`tools/brand/test_howto.gd`(20 項)。畫面截圖:`store-assets/screenshots-howto/`。
 
 ## 4. Portal 表單(直接複製)
 

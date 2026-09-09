@@ -23,15 +23,17 @@ Contact e-mail: justinliehu@gmail.com
 Category: Games (puzzle / platformer)
 In-app purchases: YES (100 SKR revive)   |   Ads: NO   |   Accounts / analytics: NO
 Permissions declared in the APK: INTERNET, ACCESS_NETWORK_STATE
-APK: build/android/seeker-gravity-release.apk  (versionCode 18, versionName 1.4.4, arm64-v8a, minSdk 23, targetSdk 34)
+APK: build/android/seeker-gravity-release.apk  (versionCode 19, versionName 1.4.5, arm64-v8a, minSdk 23, targetSdk 34)
 Signing cert SHA-256: cff7777f4833f302ae71d388f352dc67755fddfd00b84f63a831f379212da832
 
-What's new / release notes (resubmission 2026-09-08, versionCode 18 / 1.4.4 - same game, new version number because the portal needs a new release):
-• Paid revive: once the 3 free revives for a level are used up today, you can revive in place for 100 SKR, approved in one tap in your Seeker wallet without leaving the game. Restarting a level is always free.
-• Revive in place: continue from the last spot you stood on; blocks and the timer stay as they are.
-• 8 worlds, 50 gems, on-screen touch controls, gamepad supported.
-• No ads, no accounts, no tracking. INTERNET / ACCESS_NETWORK_STATE are used only for that payment.
-• Based on ROTA: Bend Gravity by Harmony Monroe (MIT) - thank you, Harmony!
+What's new / release notes (1.4.5, versionCode 19):
+In-game explanation, added after review feedback.
+
+- New HOW TO PLAY page, reachable from the title screen and from the pause menu: the four controls with their on-screen button icons, plus the three rules of the game.
+- The first level now shows one line of guidance about the core mechanic (walk off an edge and gravity turns with you). It fades in, stays five seconds and fades out by itself, once, and nothing has to be tapped or dismissed.
+- Everything else is unchanged from the previous submission: 8 worlds, 50 gems, touch controls, 3 free revives per level per day and the optional 100 SKR revive paid in the Seeker wallet.
+- No ads, no accounts, no tracking. INTERNET / ACCESS_NETWORK_STATE are used only for that payment.
+- Based on ROTA: Bend Gravity by Harmony Monroe (MIT licence).
 
 Testing instructions for the reviewer:
 HOW TO TEST: 1. Launch the app. Tap START on the title screen (or the X on-screen button). Everything below works offline except the optional paid revive. 2. Play with the on-screen controls: left/right to walk, boot = jump, hand = grab / drop a block, magnifier = zoom out. Walk off any edge: gravity rotates and you keep walking on the new floor. 3. FREE REVIVE (no wallet needed): die (spikes or falling) - a prompt offers REVIVE HERE (3 left today) and RESTART LEVEL. REVIVE HERE puts you back on the last spot you stood on; each level allows 3 free revives per calendar day. RESTART LEVEL is always free. 4. PAID REVIVE (needs the Seeker wallet with at least 100 SKR and a little SOL for the network fee): after the 3 free revives of a level are used, the prompt shows PAY 100 SKR TO REVIVE. Tapping it shows a confirmation (PAY 100 SKR / CANCEL); PAY opens the Seeker wallet sheet inside the app (Mobile Wallet Adapter). Approve the 100 SKR transfer; when it is confirmed on-chain the game revives you in place automatically. Declining in the wallet, or CANCEL, returns to the prompt with no charge. The price is shown before every payment. 5. Options (pause menu): sound, touch-control size/margins, performance and speedrun clock.

@@ -125,6 +125,8 @@ var shadow_buffer := 2 setget set_shadow_buffer
 var is_weather := true setget set_is_weather
 var is_interpolate := true setget set_is_interpolate
 var is_touch := false setget set_is_touch
+# phone build: hides desktop-only options (keyboard remap, window size...). Tests may override.
+var is_mobile := OS.get_name() == "Android"
 
 var is_demo := false
 
@@ -612,9 +614,10 @@ func save_data():
 	
 	maps_visited.sort()
 	s["maps_visited"] = maps_visited.duplicate()
+	s["revives"] = Revive.to_save()
 	
 	for i in s.keys():
-		if not i in "time, csfn, last_scene, goals, dye, hair, maps_visited":
+		if not i in "time, csfn, last_scene, goals, dye, hair, maps_visited, revives":
 			s.erase(i)
 	
 	file_save_json("user://save_data.json", save_dict)
@@ -627,6 +630,7 @@ func load_data():
 
 func erase_slot(arg := 0):
 	save_dict[arg] = {}
+	Tip.forget()
 	MenuMakeover.preset()
 	emit_signal("slot_erased", arg)
 
@@ -662,6 +666,7 @@ func load_slot(arg := 0):
 			save_time = s["time"]
 		
 		maps_visited = s["maps_visited"].duplicate() if s.has("maps_visited") else []
+		Revive.from_save(s.get("revives", {}))
 		
 	else:
 		Cutscene.is_start_game = true
@@ -815,14 +820,12 @@ func try_achievement():
 	if csfn == end_path and save_time < 3600:
 		achieve("speedrun")
 
-func achieve(arg := ""):
-	if arg != "" and Steam.is_init():
-		Steam.set_achievement(arg)
+func achieve(_arg := ""):
+	# Steam achievements removed in this distribution (no Steam addon, no Steam build).
+	pass
 
 ### Demo ###
 
 func store_page():
-	if Steam.is_init:
-		Steam.friends.activate_game_overlay_to_store(1993830, Steam.OverlayToStoreFlag.None)
-	else:
-		OS.shell_open("https://store.steampowered.com/app/1993830/ROTA/")
+	# Store link removed in this distribution.
+	pass

@@ -28,6 +28,8 @@ func accept():
 			back_to_hub()
 		"options":
 			sub_menu(MenuOptions)
+		"howto":
+			sub_menu(MenuHowTo)
 		"store":
 			Shared.store_page()
 		"exit":
@@ -52,6 +54,10 @@ func set_open(arg := is_open, is_audio := true):
 		hub_label.visible = !("hub" in Shared.csfn or "start" in Shared.csfn) and "hub" in Shared.last_scene
 		hub_label.text = "Exit Arcade" if Shared.is_arcade else "Exit Stage"
 		
+		# the store link was removed in this distribution: never show a button that does nothing
+		var store_label = items_node.get_node_or_null("Store")
+		if store_label != null:
+			store_label.visible = false
 		items = []
 		for i in items_node.get_children():
 			if i.visible:

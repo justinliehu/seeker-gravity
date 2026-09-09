@@ -12,7 +12,7 @@
 [ext_resource path="res://src/detail/FlowerPetals.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/detail/Candle.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/detail/Lamppost.tscn" type="PackedScene" id=12]
-[ext_resource path="res://media/image/UI/harmony-monroe-white.png" type="Texture" id=13]
+[ext_resource path="res://media/image/UI/credit-rota.png" type="Texture" id=13]
 [ext_resource path="res://src/menu/MenuFile.gd" type="Script" id=14]
 [ext_resource path="res://src/menu/MenuTitle.gd" type="Script" id=15]
 [ext_resource path="res://src/menu/MenuFileDelete.gd" type="Script" id=16]
@@ -206,6 +206,18 @@ custom_styles/panel = SubResource( 8 )
 __meta__ = {
 "_editor_description_": ""
 }
+
+[node name="HowTo" type="Label" parent="Canvas/CenterContainer/Control/MenuTitle/List"]
+margin_left = 34.0
+margin_top = 235.0
+margin_right = 300.0
+margin_bottom = 286.0
+size_flags_horizontal = 4
+size_flags_vertical = 5
+theme = ExtResource( 26 )
+text = "How to Play"
+align = 1
+valign = 1
 
 [node name="Options" type="Label" parent="Canvas/CenterContainer/Control/MenuTitle/List"]
 margin_left = 66.0
@@ -671,7 +683,7 @@ margin_top = 195.0
 margin_right = 512.0
 margin_bottom = 226.0
 custom_fonts/font = SubResource( 6 )
-text = "harmonymonroe.com   "
+text = "MIT licensed - thank you Harmony!   "
 align = 2
 valign = 1
 
@@ -909,7 +921,7 @@ margin_right = 2100.0
 margin_bottom = 800.0
 custom_colors/font_color = Color( 0.25098, 0.25098, 0.25098, 1 )
 custom_fonts/font = SubResource( 4 )
-text = "ROTA"
+text = "SEEKER GRAVITY"
 align = 1
 valign = 1
 __meta__ = {
@@ -923,7 +935,7 @@ margin_right = 2100.0
 margin_bottom = 790.0
 custom_colors/font_color = Color( 0.25098, 0.25098, 0.25098, 1 )
 custom_fonts/font = SubResource( 26 )
-text = "BEND GRAVITY"
+text = "BASED ON ROTA"
 align = 1
 valign = 1
 

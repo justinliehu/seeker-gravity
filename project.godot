@@ -58,71 +58,6 @@ _global_script_classes=[ {
 "class": "Scroll",
 "language": "GDScript",
 "path": "res://src/menu/options/scroll/Scroll.gd"
-}, {
-"base": "",
-"class": "SteamAPI",
-"language": "NativeScript",
-"path": "res://addons/steam_api/steam_api.gdns"
-}, {
-"base": "",
-"class": "SteamCallback",
-"language": "NativeScript",
-"path": "res://addons/steam_api/steam_callback.gdns"
-}, {
-"base": "",
-"class": "SteamFriends",
-"language": "NativeScript",
-"path": "res://addons/steam_api/steam_friends.gdns"
-}, {
-"base": "Node",
-"class": "SteamI",
-"language": "GDScript",
-"path": "res://addons/steam_api/steam_i.gd"
-}, {
-"base": "",
-"class": "SteamId",
-"language": "NativeScript",
-"path": "res://addons/steam_api/steam_id.gdns"
-}, {
-"base": "",
-"class": "SteamLeaderboard",
-"language": "NativeScript",
-"path": "res://addons/steam_api/steam_leaderboard.gdns"
-}, {
-"base": "",
-"class": "SteamLeaderboardEntries",
-"language": "NativeScript",
-"path": "res://addons/steam_api/steam_leaderboard_entries.gdns"
-}, {
-"base": "",
-"class": "SteamLeaderboardEntry",
-"language": "NativeScript",
-"path": "res://addons/steam_api/steam_leaderboard_entry.gdns"
-}, {
-"base": "",
-"class": "SteamLeaderboardFindResult",
-"language": "NativeScript",
-"path": "res://addons/steam_api/steam_find_leaderboard_result.gdns"
-}, {
-"base": "",
-"class": "SteamLeaderboardScoreUploaded",
-"language": "NativeScript",
-"path": "res://addons/steam_api/steam_leaderboard_uploaded.gdns"
-}, {
-"base": "",
-"class": "SteamLeaderboardScoresDownloaded",
-"language": "NativeScript",
-"path": "res://addons/steam_api/steam_leaderboard_scores_downloaded.gdns"
-}, {
-"base": "",
-"class": "SteamUser",
-"language": "NativeScript",
-"path": "res://addons/steam_api/steam_user.gdns"
-}, {
-"base": "",
-"class": "SteamUserStats",
-"language": "NativeScript",
-"path": "res://addons/steam_api/steam_user_stats.gdns"
 } ]
 _global_script_class_icons={
 "Arrow": "",
@@ -134,35 +69,20 @@ _global_script_class_icons={
 "Player": "",
 "PolyShape": "",
 "SaveDict": "",
-"Scroll": "",
-"SteamAPI": "",
-"SteamCallback": "",
-"SteamFriends": "",
-"SteamI": "",
-"SteamId": "",
-"SteamLeaderboard": "",
-"SteamLeaderboardEntries": "",
-"SteamLeaderboardEntry": "",
-"SteamLeaderboardFindResult": "",
-"SteamLeaderboardScoreUploaded": "",
-"SteamLeaderboardScoresDownloaded": "",
-"SteamUser": "",
-"SteamUserStats": ""
+"Scroll": ""
 }
 
 [application]
 
-config/name="ROTA: Bend Gravity"
-config/description="ROTA: Bend Gravity by Harmony Monroe
-harmonymonroe.com"
+config/name="Seeker Gravity"
+config/description="Seeker Gravity - a gravity-bending block puzzle platformer. Based on ROTA by Harmony Monroe (MIT)."
 run/main_scene="res://src/menu/Splash.tscn"
 config/use_custom_user_dir=true
-config/custom_user_dir_name="ROTA-Harmony"
+config/custom_user_dir_name="Seeker-Gravity"
 config/project_settings_override="user://override.cfg"
-boot_splash/image="res://media/image/UI/harmony-monroe-square-white.png"
-boot_splash/bg_color=Color( 0, 0, 0, 1 )
+boot_splash/image="res://media/image/UI/splash.png"
+boot_splash/bg_color=Color( 0.078, 0.047, 0.157, 1 )
 config/icon="res://media/image/icon/icon256.png"
-config/windows_native_icon="res://media/image/icon/rota.ico"
 
 [autoload]
 
@@ -179,7 +99,10 @@ MenuMakeover="*res://src/menu/MenuMakeover.tscn"
 Audio="*res://src/autoload/Audio.tscn"
 Clouds="*res://src/autoload/Clouds.tscn"
 TouchScreen="*res://src/autoload/touch_screen.tscn"
-Steam="*res://addons/steam_api/steam.gd"
+Revive="*res://src/autoload/Revive.gd"
+RevivePrompt="*res://src/menu/RevivePrompt.tscn"
+MenuHowTo="*res://src/menu/MenuHowTo.tscn"
+Tip="*res://src/autoload/Tip.tscn"
 
 [display]
 
@@ -192,7 +115,7 @@ window/stretch/aspect="keep_height"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/steam_api/plugin.cfg" )
+enabled=PoolStringArray(  )
 
 [input]
 

@@ -15,6 +15,8 @@ func accept():
 			Cam.target_pos = pos + Vector2(350, 0)
 		"makeover":
 			sub_menu(MenuMakeover)
+		"howto":
+			sub_menu(MenuHowTo)
 		"options":
 			sub_menu(MenuOptions)
 			Cam.target_pos = pos + Vector2(0, -600)
