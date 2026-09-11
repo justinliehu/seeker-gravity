@@ -1,0 +1,9 @@
+[config]
+
+name="SeekerWallet"
+binary_type="local"
+binary="SeekerWallet.aar"
+
+[dependencies]
+
+remote=["com.solanamobile:mobile-wallet-adapter-clientlib:2.0.3", "androidx.annotation:annotation:1.7.1"]

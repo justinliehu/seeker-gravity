@@ -4,14 +4,15 @@ A gravity-bending puzzle platformer for the **Solana Seeker**, with an optional 
 purchase approved in the phone's own wallet through the **Mobile Wallet Adapter**. No ads, no accounts,
 no analytics; the game itself works fully offline.
 
-Built with **Godot Engine 3.6.1**. Package `com.justinliehu.seekergravity`, version 1.4.5 (versionCode 19).
+Built with **Godot Engine 3.6.1**. Package `com.justinliehu.seekergravity`, version 1.4.5 (versionCode 19),
+live on the Solana dApp Store.
 
 Signed APK and legal pages: <https://seeker-heli-seeker-doudizhu-126cd50d.koyeb.app/gravity/>
 
-> The game world (levels, art, music) comes from **ROTA: Bend Gravity** by Harmony Honey Monroe, used
-> under the MIT licence. What was built in this repository is the mobile and Solana layer described
-> below. See [NOTICE.md](NOTICE.md) for the full attribution and [LICENSE](LICENSE) for the original
-> licence, both of which ship inside the app.
+> The game world (levels, art, music, on-screen controls) comes from **ROTA: Bend Gravity** by Harmony
+> Honey Monroe, used under the MIT licence. What was built in this repository is the mobile and Solana
+> layer described below. See [NOTICE.md](NOTICE.md) for the full attribution and [LICENSE](LICENSE) for
+> the original licence; in the app, the title screen credits the MIT licence.
 
 ## What was built here
 
@@ -21,7 +22,7 @@ Signed APK and legal pages: <https://seeker-heli-seeker-doudizhu-126cd50d.koyeb.
 | **In-app purchase flow** | `src/autoload/Revive.gd`, `src/menu/RevivePrompt.*` | Order reference, explicit confirm step, live wallet progress, cancel, retry, recovery of an order paid while the app was closed, and continuing the moment the payment is confirmed on chain. |
 | **Payment backend** | `server/` | Builds the unsigned transaction (SPL `transfer_checked` of 100 SKR plus a memo carrying the order reference) and verifies it on chain afterwards. It holds no private key and cannot move funds. |
 | **Revive in place** | `src/actor/Player.gd` | Continue from the last spot you stood on instead of restarting the level. Three free revives per level per day; the paid revive exists only after those run out. |
-| **Phone-first UI** | `src/autoload/touch_screen.tscn`, `src/menu/options/MenuOptions.gd` | On-screen controls, with the desktop-only option rows (key remap, window size, v-sync) hidden on Android. |
+| **Phone-first options** | `src/menu/options/MenuOptions.gd` | The desktop-only option rows (key remap, window size, v-sync) are hidden on Android. The on-screen touch controls are ROTA's own and are used unchanged. |
 | **In-game explanation** | `src/menu/MenuHowTo.*`, `src/autoload/Tip.*` | A How to Play page in the title and pause menus, plus one line of guidance in the first level that fades out by itself. |
 
 ## How the purchase works

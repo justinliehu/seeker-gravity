@@ -4,7 +4,9 @@
 # custom
 .flatpak-builder/
 .import/
-[Aa]ndroid/
+# the generated Android build template stays out; the prebuilt wallet plugin is part of the project
+[Aa]ndroid/*
+![Aa]ndroid/plugins/
 [Ee]xport/*/
 [Ee]xport/_mac*
 # Seeker Gravity build outputs / secrets
@@ -16,4 +18,7 @@ web/static/game.apk
 web/__pycache__/
 # backend order store / python caches / machine-specific SDK path
 server/data/
+__pycache__/
 tools/seekerwallet-plugin/local.properties
+# hackathon media (demo video, pitch deck) are submitted separately
+hackathon/
